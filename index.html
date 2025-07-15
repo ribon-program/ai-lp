@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIプログラミング学習コミュニティ</title>
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #212529;
+            --primary-color: #007bff;
+            --card-bg-color: #f8f9fa;
+            --border-color: #dee2e6;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            position: relative;
+            text-align: center;
+            padding: 120px 20px;
+            background: url('images/header-background.jpg') no-repeat center center/cover;
+            color: #fff;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1;
+        }
+
+        header .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        header p {
+            font-size: 1.2em;
+            max-width: 600px;
+            margin: 0 auto 30px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 15px 30px;
+            font-size: 1.1em;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .cta-button:hover {
+            background-color: #0056b3;
+            transform: translateY(-3px);
+        }
+
+        section {
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        section h2 {
+            font-size: 2.5em;
+            margin-bottom: 40px;
+        }
+
+        .features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .feature-card {
+            background-color: var(--card-bg-color);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 30px;
+            width: calc(50% - 40px);
+            box-sizing: border-box;
+            text-align: left;
+        }
+        
+        .feature-card h3 {
+            color: var(--primary-color);
+            margin-top: 0;
+        }
+
+        .target-list {
+            display: inline-block;
+            text-align: left;
+            list-style: '✅ ';
+            padding-left: 20px;
+        }
+
+        .steps {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: left;
+            background-color: var(--card-bg-color);
+            padding: 30px;
+            border-radius: 10px;
+        }
+
+        .steps p {
+            font-size: 1.1em;
+            margin-bottom: 15px;
+        }
+        
+        .steps strong {
+            color: var(--primary-color);
+            font-size: 1.2em;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.5em;
+            }
+            .feature-card {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <h1>AIプログラミングを、仲間と共に学ぶ。</h1>
+            <p>未経験者から経験者まで、誰もがAI技術を学び、実践し、成長できるコミュニティへようこそ。</p>
+            <a href="https://discord.com/" class="cta-button">今すぐDiscordに参加する</a>
+        </div>
+    </header>
+
+    <main>
+        <section id="features">
+            <div class="container">
+                <h2>このコミュニティでできること</h2>
+                <div class="features">
+                    <div class="feature-card">
+                        <h3>最新情報の共有</h3>
+                        <p>日々進化するAIの最新ニュースや論文、技術トレンドをキャッチアップできます。</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>プロジェクト共同開発</h3>
+                        <p>仲間とチームを組んで、学んだ知識をアウトプットする実践的なプロジェクト開発に挑戦できます。</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>学習サポートと質問会</h3>
+                        <p>経験豊富なメンターや仲間たちが、あなたの学習をサポート。気軽に質問できる環境です。</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>キャリア相談</h3>
+                        <p>AI業界で働くメンバーと繋がり、キャリアパスや就職・転職についての相談ができます。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="target" style="background-color: var(--card-bg-color);">
+            <div class="container">
+                <h2>こんな方におすすめ</h2>
+                <ul class="target-list">
+                    <li>AIや機械学習に興味がある学生の方</li>
+                    <li>新しいスキルを身につけたい社会人の方</li>
+                    <li>独学でのプログラミング学習に限界を感じている方</li>
+                    <li>一緒に切磋琢磨し、開発する仲間が欲しい方</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="join">
+            <div class="container">
+                <h2>参加は簡単3ステップ</h2>
+                <div class="steps">
+                    <p><strong>Step 1:</strong> 下のボタンをクリックして招待ページへ</p>
+                    <p><strong>Step 2:</strong> Discordの招待を承認してサーバーに参加</p>
+                    <p><strong>Step 3:</strong> 「#自己紹介」チャンネルで簡単な挨拶をしよう！</p>
+                </div>
+                <a href="https://discord.com/" class="cta-button" style="margin-top: 40px;">今すぐDiscordに参加する</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 AIプログラミング学習コミュニティ. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
