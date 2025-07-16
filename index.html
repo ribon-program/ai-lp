@@ -3,37 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>天地創造</title>
+    <title>天地創造 - AIプログラミングコミュニティ</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --bg-color: #ffffff;
-            --text-color: #212529;
-            --primary-color: #007bff;
-            --card-bg-color: #f8f9fa;
-            --border-color: #dee2e6;
+            --primary-color: #4a90e2;
+            --primary-hover-color: #357abd;
+            --text-color-light: #f8f9fa;
+            --text-color-dark: #212529;
+            --bg-color-light: #ffffff;
+            --bg-color-dark: #121212;
+            --card-bg-light: #f8f9fa;
+            --card-bg-dark: #1e1e1e;
+            --border-color-light: #dee2e6;
+            --border-color-dark: #333;
+            --shadow-light: 0 10px 20px rgba(0,0,0,0.1);
+            --shadow-dark: 0 10px 20px rgba(0,0,0,0.4);
+        }
+
+        [data-theme="light"] {
+            --text-color: var(--text-color-dark);
+            --bg-color: var(--bg-color-light);
+            --card-bg-color: var(--card-bg-light);
+            --border-color: var(--border-color-light);
+            --shadow: var(--shadow-light);
+        }
+
+        [data-theme="dark"] {
+            --text-color: var(--text-color-light);
+            --bg-color: var(--bg-color-dark);
+            --card-bg-color: var(--card-bg-dark);
+            --border-color: var(--border-color-dark);
+            --shadow: var(--shadow-dark);
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             margin: 0;
             padding: 0;
             background-color: var(--bg-color);
             color: var(--text-color);
-            line-height: 1.6;
+            line-height: 1.8;
+            transition: background-color 0.3s, color 0.3s;
         }
 
         .container {
-            max-width: 960px;
+            max-width: 1100px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 0 20px;
         }
 
         header {
             position: relative;
             text-align: center;
-            padding: 120px 20px;
+            padding: 150px 20px;
             background: url('images/header-background.jpg') no-repeat center center/cover;
             color: #fff;
+            overflow: hidden;
         }
 
         header::before {
@@ -43,7 +72,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(0, 0, 0, 0.5);
+            background: linear-gradient(45deg, rgba(26, 26, 26, 0.7), rgba(50, 50, 50, 0.8));
             z-index: 1;
         }
 
@@ -53,158 +82,297 @@
         }
 
         header h1 {
-            font-size: 3em;
-            margin-bottom: 10px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 4em;
+            font-weight: 700;
+            margin-bottom: 20px;
             color: #fff;
+            text-shadow: 0 4px 10px rgba(0,0,0,0.5);
+            animation: fadeInDown 1s ease-out;
         }
 
         header p {
-            font-size: 1.2em;
-            max-width: 600px;
-            margin: 0 auto 30px;
+            font-size: 1.3em;
+            max-width: 650px;
+            margin: 0 auto 40px;
+            animation: fadeInUp 1s ease-out 0.3s;
+            animation-fill-mode: backwards;
         }
 
         .cta-button {
             display: inline-block;
-            background-color: var(--primary-color);
+            background: var(--primary-color);
             color: #fff;
-            padding: 15px 30px;
-            font-size: 1.1em;
+            padding: 18px 40px;
+            font-size: 1.2em;
             font-weight: bold;
             text-decoration: none;
             border-radius: 50px;
-            transition: background-color 0.3s, transform 0.3s;
+            transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 5px 15px rgba(74, 144, 226, 0.4);
         }
 
         .cta-button:hover {
-            background-color: #0056b3;
-            transform: translateY(-3px);
+            background-color: var(--primary-hover-color);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(74, 144, 226, 0.6);
         }
 
         section {
-            padding: 60px 20px;
+            padding: 80px 0;
             text-align: center;
         }
 
         section h2 {
-            font-size: 2.5em;
-            margin-bottom: 40px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 3em;
+            font-weight: 600;
+            margin-bottom: 60px;
         }
 
         .features {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            justify-content: center;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            text-align: left;
         }
 
         .feature-card {
             background-color: var(--card-bg-color);
             border: 1px solid var(--border-color);
-            border-radius: 10px;
-            padding: 30px;
-            width: calc(50% - 40px);
-            box-sizing: border-box;
-            text-align: left;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
         }
         
+        .feature-card .icon {
+            font-size: 2.5em;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
         .feature-card h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.5em;
             color: var(--primary-color);
             margin-top: 0;
+            margin-bottom: 15px;
+        }
+
+        #target {
+            background-color: var(--card-bg-color);
         }
 
         .target-list {
             display: inline-block;
             text-align: left;
-            list-style: '✅ ';
-            padding-left: 20px;
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .target-list li {
+            font-size: 1.2em;
+            margin-bottom: 15px;
+        }
+
+        .target-list li i {
+            color: #28a745;
+            margin-right: 15px;
         }
 
         .steps {
-            max-width: 600px;
+            max-width: 700px;
             margin: 0 auto;
             text-align: left;
             background-color: var(--card-bg-color);
-            padding: 30px;
-            border-radius: 10px;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            border-left: 5px solid var(--primary-color);
         }
 
         .steps p {
-            font-size: 1.1em;
-            margin-bottom: 15px;
+            font-size: 1.2em;
+            margin-bottom: 20px;
+            position: relative;
+            padding-left: 25px;
         }
         
-        .steps strong {
+        .steps p strong {
+            font-weight: 700;
             color: var(--primary-color);
-            font-size: 1.2em;
+            font-size: 1.3em;
+        }
+
+        .steps p::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+            font-weight: bold;
         }
 
         footer {
             text-align: center;
-            padding: 20px;
-            margin-top: 40px;
+            padding: 40px 20px;
+            margin-top: 60px;
             border-top: 1px solid var(--border-color);
         }
 
+        .theme-switcher {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+
+        .switch input { 
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 34px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: var(--primary-color);
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+        
+        .slider .fa-sun, .slider .fa-moon {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+            transition: opacity 0.4s;
+        }
+        .slider .fa-sun { left: 8px; opacity: 1; }
+        .slider .fa-moon { right: 8px; opacity: 0; }
+        input:checked + .slider .fa-sun { opacity: 0; }
+        input:checked + .slider .fa-moon { opacity: 1; }
+
+
         @media (max-width: 768px) {
             header h1 {
-                font-size: 2.5em;
+                font-size: 2.8em;
             }
-            .feature-card {
-                width: 100%;
+            header p {
+                font-size: 1.1em;
+            }
+            section h2 {
+                font-size: 2.2em;
             }
         }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
     </style>
 </head>
-<body>
+<body data-theme="dark">
+
+    <div class="theme-switcher">
+        <label class="switch">
+            <input type="checkbox" id="theme-toggle" checked>
+            <span class="slider">
+                <i class="fas fa-sun"></i>
+                <i class="fas fa-moon"></i>
+            </span>
+        </label>
+    </div>
 
     <header>
         <div class="container">
-            <h1>AIプログラミングを、仲間と共に学ぶ。</h1>
+            <h1>AIプログラミングを、<br>仲間と共に学ぶ。</h1>
             <p>未経験者から経験者まで、誰もがAI技術を学び、実践し、成長できるコミュニティへようこそ。</p>
             <a href="https://discord.com/" class="cta-button">今すぐDiscordに参加する</a>
         </div>
     </header>
 
     <main>
-        <section id="features">
-            <div class="container">
+        <div class="container">
+            <section id="features">
                 <h2>このコミュニティでできること</h2>
                 <div class="features">
                     <div class="feature-card">
+                        <div class="icon"><i class="fas fa-rocket"></i></div>
                         <h3>最新情報の共有</h3>
                         <p>日々進化するAIの最新ニュースや論文、技術トレンドをキャッチアップできます。</p>
                     </div>
                     <div class="feature-card">
+                        <div class="icon"><i class="fas fa-users"></i></div>
                         <h3>プロジェクト共同開発</h3>
                         <p>仲間とチームを組んで、学んだ知識をアウトプットする実践的なプロジェクト開発に挑戦できます。</p>
                     </div>
                     <div class="feature-card">
+                        <div class="icon"><i class="fas fa-hands-helping"></i></div>
                         <h3>学習サポートと質問会</h3>
                         <p>経験豊富なメンターや仲間たちが、あなたの学習をサポート。気軽に質問できる環境です。</p>
                     </div>
                     <div class="feature-card">
+                        <div class="icon"><i class="fas fa-briefcase"></i></div>
                         <h3>キャリア相談</h3>
                         <p>AI業界で働くメンバーと繋がり、キャリアパスや就職・転職についての相談ができます。</p>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <section id="target" style="background-color: var(--card-bg-color);">
-            <div class="container">
+            <section id="target">
                 <h2>こんな方におすすめ</h2>
                 <ul class="target-list">
-                    <li>AIや機械学習に興味がある学生の方</li>
-                    <li>新しいスキルを身につけたい社会人の方</li>
-                    <li>独学でのプログラミング学習に限界を感じている方</li>
-                    <li>一緒に切磋琢磨し、開発する仲間が欲しい方</li>
+                    <li><i class="fas fa-check-circle"></i>AIや機械学習に興味がある学生の方</li>
+                    <li><i class="fas fa-check-circle"></i>新しいスキルを身につけたい社会人の方</li>
+                    <li><i class="fas fa-check-circle"></i>独学でのプログラミング学習に限界を感じている方</li>
+                    <li><i class="fas fa-check-circle"></i>一緒に切磋琢磨し、開発する仲間が欲しい方</li>
                 </ul>
-            </div>
-        </section>
+            </section>
 
-        <section id="join">
-            <div class="container">
+            <section id="join">
                 <h2>参加は簡単3ステップ</h2>
                 <div class="steps">
                     <p><strong>Step 1:</strong> 下のボタンをクリックして招待ページへ</p>
@@ -212,8 +380,8 @@
                     <p><strong>Step 3:</strong> 「#自己紹介」チャンネルで簡単な挨拶をしよう！</p>
                 </div>
                 <a href="https://discord.com/" class="cta-button" style="margin-top: 40px;">今すぐDiscordに参加する</a>
-            </div>
-        </section>
+            </section>
+        </div>
     </main>
 
     <footer>
@@ -221,6 +389,26 @@
             <p>&copy; 2025 天地創造. All rights reserved.</p>
         </div>
     </footer>
+
+    <script>
+        const themeToggle = document.getElementById('theme-toggle');
+        const body = document.body;
+
+        themeToggle.addEventListener('change', function() {
+            if (this.checked) {
+                body.setAttribute('data-theme', 'dark');
+            } else {
+                body.setAttribute('data-theme', 'light');
+            }
+        });
+
+        // Set initial theme based on toggle state
+        if (themeToggle.checked) {
+            body.setAttribute('data-theme', 'dark');
+        } else {
+            body.setAttribute('data-theme', 'light');
+        }
+    </script>
 
 </body>
 </html>
